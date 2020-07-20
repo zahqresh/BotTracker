@@ -10,6 +10,7 @@ var useragent = require("express-useragent"); //get user browser data
 const Bowser = require("bowser"); //To detect browser,type,os
 var moment = require("moment"); // require
 var db = require('./db');
+
 app.use(device.capture());
 //Connect database
 
@@ -35,6 +36,7 @@ app.get("/", (req, res) => {
     axios
       .get(`https://ipapi.co/${ip}/json`) //need ip to replace with ${ip} before deploying
       .then((response) => {
+        console.log(req.device.type);
         //Save data to the database
         new db({
           botId: shortid.generate(),
@@ -44,7 +46,7 @@ app.get("/", (req, res) => {
           region: response.data.region,
           city: response.data.city,
           languages: response.data.languages,
-          type:platform.name,
+          type:req.device.type,
           os: user.os,
           browser: user.platform,
         }).save()
