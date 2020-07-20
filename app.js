@@ -1,15 +1,16 @@
 var express = require("express");
 var app = express();
+var device = require('express-device');
 const isbot = require("isbot");
 const mongoose = require('mongoose');
 const shortid = require("shortid"); //unique id generator
-const DeviceDetector = require("device-detector-js");
 var axios = require("axios").default;
 var platform = require('platform'); //get platform inforamtion
 var useragent = require("express-useragent"); //get user browser data
 const Bowser = require("bowser"); //To detect browser,type,os
 var moment = require("moment"); // require
 var db = require('./db');
+app.use(device.capture());
 //Connect database
 
 //Replace this string of data base with you mongodb string
@@ -43,12 +44,12 @@ app.get("/", (req, res) => {
           region: response.data.region,
           city: response.data.city,
           languages: response.data.languages,
-          type:platform.product,
+          type:platform,
           os: user.os,
           browser: user.platform,
         }).save()
         .then((doc)=>{
-          console.log(platform);
+          
           res.send(doc)
         })
 
