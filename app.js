@@ -23,7 +23,7 @@ app.use(useragent.express());
 // remove "/" and add any of your page to check for bots
 app.get("/", (req, res) => {
   let user = req.useragent;
-  if (isbot(req.get["user-agent"]) == true) {
+  if (isbot(req.get["user-agent"]) == false) {
     //get bot ip adress
     var ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
     if (ip.substr(0, 7) == "::ffff:") {
