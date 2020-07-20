@@ -44,7 +44,7 @@ app.get("/", (req, res) => {
           region: response.data.region,
           city: response.data.city,
           languages: response.data.languages,
-          type:platform.product,
+          type:platform.name,
           os: user.os,
           browser: user.platform,
         }).save()
