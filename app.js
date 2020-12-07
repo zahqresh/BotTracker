@@ -15,7 +15,7 @@ app.use(device.capture());
 //Connect database
 
 //Replace this string of data base with you mongodb string
-mongoose.connect('mongodb+srv://hamza:hamza@cluster0-ho2sf.mongodb.net/<dbname>?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true},()=>{
+mongoose.connect(DB, {useNewUrlParser: true, useUnifiedTopology: true},()=>{
   console.log('DB connected!');
 });
 
